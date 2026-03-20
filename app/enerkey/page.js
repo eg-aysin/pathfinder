@@ -264,6 +264,15 @@ export default function EnerkeyPage() {
     setSearch('');
   }
 
+  function handleExport() {
+    const ids = jobs
+      .filter(j => j.data?.status === 'complete' && j.processId)
+      .map(j => j.processId)
+      .join(',');
+    if (!ids) return;
+    window.location.href = `/api/export/${ids}`;
+  }
+
   const hasJobs    = jobs.length > 0;
   const chipsFull  = chips.length >= 10;
 
@@ -421,7 +430,14 @@ export default function EnerkeyPage() {
                     <Download size={16} className="text-green-400" />
                     Import Output — {allMerged.length} records
                   </CardTitle>
-                  <Badge variant="success">output.xlsx ready</Badge>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="success">output.xlsx ready</Badge>
+                    <Button size="sm" onClick={handleExport} variant="outline"
+                      className="border-green-500/40 text-green-400 hover:bg-green-500/10 hover:border-green-400 gap-1.5">
+                      <Download size={13} />
+                      Export .xlsx
+                    </Button>
+                  </div>
                 </div>
                 <CardDescription>
                   {jobs.length} facilit{jobs.length === 1 ? 'y' : 'ies'} · Salesforce + RecordBox merged on Facility name &amp; Sales Items ID

@@ -2,9 +2,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Server, Activity, CheckCircle2, Loader2, Clock, Cloud, Database,
-  Zap, ArrowRight, TrendingUp, Layers
+  Zap, ArrowRight, TrendingUp, Layers, Download
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 const SOURCE_COLOR = {
@@ -297,10 +298,21 @@ function ProcessDetail({ proc }) {
       {proc.mergedData && proc.mergedData.length > 0 && (
         <Card className="glow-card-active">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-green-400" />
-              Merged Output — {proc.mergedData.length} records
-            </CardTitle>
+            <div className="flex items-center justify-between gap-2">
+              <CardTitle className="text-base flex items-center gap-2">
+                <CheckCircle2 size={16} className="text-green-400" />
+                Merged Output — {proc.mergedData.length} records
+              </CardTitle>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => { window.location.href = `/api/export/${proc.id}`; }}
+                className="border-green-500/40 text-green-400 hover:bg-green-500/10 hover:border-green-400 gap-1.5 flex-none"
+              >
+                <Download size={13} />
+                Export .xlsx
+              </Button>
+            </div>
             <CardDescription>Ready for delivery to Enerkey</CardDescription>
           </CardHeader>
           <CardContent>

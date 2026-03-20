@@ -125,10 +125,10 @@ export default function RecordBoxPage() {
               </thead>
               <tbody>
                 {[
-                  ['AsOy Kotikontu 10',       'SalesItem-2001', 'Account-1', 'Subscription-2001', 'SubscriptionItem-3001'],
-                  ['AsOy Kotikontu 10',       'SalesItem-2002', 'Account-1', 'Subscription-2001', 'SubscriptionItem-3002'],
-                  ['Green Valley Apartments', 'SalesItem-2001', 'Account-1', 'Subscription-2002', 'SubscriptionItem-3007'],
-                  ['Green Valley Apartments', 'SalesItem-2002', 'Account-1', 'Subscription-2002', 'SubscriptionItem-3008'],
+                  ['AsOy Kotikontu 10',       'SalesItem-2001', 'Account-1001', 'Subscription-2001', 'SubscriptionItem-3001'],
+                  ['AsOy Kotikontu 10',       'SalesItem-2002', 'Account-1001', 'Subscription-2001', 'SubscriptionItem-3002'],
+                  ['Green Valley Apartments', 'SalesItem-2001', 'Account-1002', 'Subscription-2002', 'SubscriptionItem-3007'],
+                  ['Green Valley Apartments', 'SalesItem-2002', 'Account-1002', 'Subscription-2002', 'SubscriptionItem-3008'],
                 ].map((row, i) => (
                   <tr key={i} className="border-t border-emerald-900/15">
                     {row.map((cell, j) => (

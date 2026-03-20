@@ -39,10 +39,11 @@ function FlowArrow({ id, active, reverse = false }) {
       <div
         className="h-full w-full"
         style={{
-          background: active
+          backgroundImage: active
             ? 'linear-gradient(90deg, transparent, #3b82f6 40%, #60a5fa 60%, #3b82f6 80%, transparent)'
-            : '#1e3a5f',
-          backgroundSize: '200% 100%',
+            : 'none',
+          backgroundColor: active ? 'transparent' : '#1e3a5f',
+          backgroundSize: active ? '200% 100%' : 'auto',
           animation: active ? (reverse ? 'flowRight 1s linear infinite reverse' : 'flowRight 1s linear infinite') : 'none',
         }}
       />
