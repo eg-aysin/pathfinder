@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #04040e;
+  --bg-card: #0a0a1e;
+  --bg-card-hover: #0e0e28;
+  --border-blue: rgba(59, 130, 246, 0.18);
+  --border-blue-active: rgba(59, 130, 246, 0.5);
+  --glow-blue: rgba(59, 130, 246, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #0a0a1e; }
+::-webkit-scrollbar-thumb { background: #1d4ed8; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+/* Flow line animations */
+.flow-line {
+  stroke-dasharray: 8 6;
+  animation: dashFlow 1.2s linear infinite;
+}
+.flow-line-reverse {
+  stroke-dasharray: 8 6;
+  animation: dashFlowReverse 1.2s linear infinite;
+}
+@keyframes dashFlow {
+  to { stroke-dashoffset: -14; }
+}
+@keyframes dashFlowReverse {
+  to { stroke-dashoffset: 14; }
+}
+
+/* Packet animation along path */
+.packet {
+  animation: movePacket 1.5s ease-in-out infinite;
+}
+@keyframes movePacket {
+  0%   { offset-distance: 0%; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* Glow card */
+.glow-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-blue);
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glow-card:hover {
+  border-color: var(--border-blue-active);
+  box-shadow: 0 0 20px var(--glow-blue);
+}
+.glow-card-active {
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* System boxes in diagram */
+.system-box {
+  transition: all 0.3s ease;
+}
+.system-box-active {
+  filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
+}
+
+/* Log entry animation */
+.log-entry {
+  animation: fadeInUp 0.35s ease-out forwards;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scanning effect */
+.scan-overlay {
+  position: relative;
+  overflow: hidden;
+}
+.scan-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.6), transparent);
+  animation: scan 2s linear infinite;
+}
+
+/* Blue gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa, #93c5fd, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Connector line gradient */
+.connector-active {
+  background: linear-gradient(90deg, transparent, #3b82f6, #60a5fa, #3b82f6, transparent);
+  background-size: 200% 100%;
+  animation: flowRight 1.5s linear infinite;
+}
+
+/* Step badge colors */
+.source-pathfinder { color: #60a5fa; }
+.source-salesforce  { color: #a78bfa; }
+.source-recordbox   { color: #34d399; }
+
+/* Status dots */
+.dot-online  { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.dot-offline { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
+.dot-busy    { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
