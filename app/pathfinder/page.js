@@ -308,7 +308,7 @@ function ProcessDetail({ proc }) {
               <table className="w-full text-xs">
                 <thead>
                   <tr style={{ background: 'rgba(59,130,246,0.08)' }}>
-                    {['Contract ID', 'Energy Type', 'Supplier', 'Meter ID', 'Reading', 'Unit', 'Status'].map(h => (
+                    {['Sales Items ID', 'Display name', 'NetSuite account', 'Subscription ID', 'Subscription item ID', 'Start date', 'Cur', 'Qty', 'Rate'].map(h => (
                       <th key={h} className="text-left px-3 py-2 text-slate-400 font-medium whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
@@ -316,17 +316,15 @@ function ProcessDetail({ proc }) {
                 <tbody>
                   {proc.mergedData.map((row, i) => (
                     <tr key={i} className="border-t border-blue-900/15 hover:bg-white/[0.015]">
-                      <td className="px-3 py-1.5 text-slate-300 font-mono">{row.contractId}</td>
-                      <td className="px-3 py-1.5 text-slate-400">{row.energyType}</td>
-                      <td className="px-3 py-1.5 text-slate-400">{row.supplier}</td>
-                      <td className="px-3 py-1.5 text-slate-400 font-mono">{row.meterId}</td>
-                      <td className="px-3 py-1.5 text-white font-medium">{row.reading.toLocaleString()}</td>
-                      <td className="px-3 py-1.5 text-slate-500">{row.unit}</td>
-                      <td className="px-3 py-1.5">
-                        <Badge variant={row.status === 'Verified' ? 'success' : 'warning'}>
-                          {row.status}
-                        </Badge>
-                      </td>
+                      <td className="px-3 py-1.5 text-slate-300 font-mono whitespace-nowrap">{row.salesItemId}</td>
+                      <td className="px-3 py-1.5 text-slate-300 whitespace-nowrap">{row.displayName}</td>
+                      <td className="px-3 py-1.5 text-slate-400 font-mono">{row.netSuiteAccount}</td>
+                      <td className="px-3 py-1.5 text-slate-400 font-mono whitespace-nowrap">{row.subscriptionId}</td>
+                      <td className="px-3 py-1.5 text-slate-400 font-mono whitespace-nowrap">{row.subscriptionItemId}</td>
+                      <td className="px-3 py-1.5 text-slate-400 whitespace-nowrap">{row.startDate}</td>
+                      <td className="px-3 py-1.5 text-slate-400">{row.currency}</td>
+                      <td className="px-3 py-1.5 text-white font-medium text-center">{row.quantity}</td>
+                      <td className="px-3 py-1.5 text-white font-medium">{row.rate}</td>
                     </tr>
                   ))}
                 </tbody>

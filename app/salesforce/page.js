@@ -120,20 +120,21 @@ export default function SalesforcePage() {
             <table className="w-full text-xs">
               <thead>
                 <tr style={{ background: 'rgba(139,92,246,0.08)' }}>
-                  {['facilityId', 'contractId', 'energyType', 'supplier', 'tariff'].map(h => (
-                    <th key={h} className="text-left px-3 py-2 text-violet-400 font-medium">{h}</th>
+                  {['Facility name', 'Sales Items ID', 'Sales item display name', 'Start date', 'Currency', 'Qty', 'Rate'].map(h => (
+                    <th key={h} className="text-left px-3 py-2 text-violet-400 font-medium whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ['FAC-001', 'CT-2024-0089', 'Electricity', 'Nordic Energy AB', 'Spot+5'],
-                  ['FAC-001', 'CT-2024-0090', 'District Heating', 'City Heat OY', 'Fixed'],
-                  ['FAC-001', 'CT-2023-0212', 'Gas', 'GasPower Ltd', 'Spot'],
+                  ['AsOy Kotikontu 10',       'SalesItem-2001', 'EMS Efficient package',     '1/1/2026', 'EUR', '1', '15'],
+                  ['AsOy Kotikontu 10',       'SalesItem-2002', 'EMS Basic package',          '1/1/2026', 'EUR', '2', '10'],
+                  ['Green Valley Apartments', 'SalesItem-2001', 'EMS Efficient package',     '2/1/2026', 'USD', '1', '16'],
+                  ['Green Valley Apartments', 'SalesItem-2002', 'EMS Basic package',          '2/1/2026', 'USD', '2', '11'],
                 ].map((row, i) => (
                   <tr key={i} className="border-t border-violet-900/15">
                     {row.map((cell, j) => (
-                      <td key={j} className="px-3 py-1.5 text-slate-400 font-mono">{cell}</td>
+                      <td key={j} className="px-3 py-1.5 text-slate-400 font-mono whitespace-nowrap">{cell}</td>
                     ))}
                   </tr>
                 ))}

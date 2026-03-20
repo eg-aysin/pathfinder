@@ -64,7 +64,7 @@ export default function RecordBoxPage() {
           <p className="text-xs font-semibold text-emerald-300 mb-0.5">Blackbox Service</p>
           <p className="text-xs text-slate-500">
             Internal implementation hidden from Enerkey. Pathfinder communicates with this service to retrieve
-            meter readings and energy consumption records (file2.xlsx).
+            facility subscription and NetSuite mapping records (file2.xlsx).
           </p>
         </div>
       </div>
@@ -118,21 +118,21 @@ export default function RecordBoxPage() {
             <table className="w-full text-xs">
               <thead>
                 <tr style={{ background: 'rgba(52,211,153,0.06)' }}>
-                  {['meterId', 'energyType', 'reading', 'unit', 'date', 'status'].map(h => (
-                    <th key={h} className="text-left px-3 py-2 text-emerald-400 font-medium">{h}</th>
+                  {['Facility name', 'Sales Items ID', 'NetSuite account', 'Subscription ID', 'Subscription item ID'].map(h => (
+                    <th key={h} className="text-left px-3 py-2 text-emerald-400 font-medium whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ['MTR-E-4421', 'Electricity',       '142,850', 'kWh', '2025-03', 'Verified'],
-                  ['MTR-E-4422', 'Electricity',        '38,920', 'kWh', '2025-03', 'Verified'],
-                  ['MTR-H-1103', 'District Heating',    '6,240', 'MWh', '2025-03', 'Pending'],
-                  ['MTR-G-0087', 'Gas',                 '9,870', 'm³',  '2025-03', 'Verified'],
+                  ['AsOy Kotikontu 10',       'SalesItem-2001', 'Account-1', 'Subscription-2001', 'SubscriptionItem-3001'],
+                  ['AsOy Kotikontu 10',       'SalesItem-2002', 'Account-1', 'Subscription-2001', 'SubscriptionItem-3002'],
+                  ['Green Valley Apartments', 'SalesItem-2001', 'Account-1', 'Subscription-2002', 'SubscriptionItem-3007'],
+                  ['Green Valley Apartments', 'SalesItem-2002', 'Account-1', 'Subscription-2002', 'SubscriptionItem-3008'],
                 ].map((row, i) => (
                   <tr key={i} className="border-t border-emerald-900/15">
                     {row.map((cell, j) => (
-                      <td key={j} className={`px-3 py-1.5 font-mono ${j === 5 ? (cell === 'Verified' ? 'text-green-400' : 'text-amber-400') : 'text-slate-400'}`}>
+                      <td key={j} className="px-3 py-1.5 font-mono text-slate-400 whitespace-nowrap">
                         {cell}
                       </td>
                     ))}
