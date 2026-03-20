@@ -1,12 +1,13 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Activity, Zap, Database, Cloud, Server } from 'lucide-react';
+import { Activity, Zap, Database, Cloud, Server, Clock } from 'lucide-react';
 
 const links = [
   { href: '/',            label: 'Overview',    icon: Activity },
   { href: '/pathfinder',  label: 'Pathfinder',  icon: Server,   primary: true },
   { href: '/enerkey',     label: 'Enerkey',     icon: Zap },
+  { href: '/history',     label: 'History',     icon: Clock },
   { href: '/salesforce',  label: 'Salesforce',  icon: Cloud },
   { href: '/recordbox',   label: 'RecordBox',   icon: Database },
 ];

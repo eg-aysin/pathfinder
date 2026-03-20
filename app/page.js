@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Zap, Server, Cloud, Database, Activity, CheckCircle2, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -81,6 +81,7 @@ function SystemBox({ id, label, icon: Icon, color, active, href, description, ba
 export default function OverviewPage() {
   const [processes, setProcesses] = useState([]);
   const [latestStatus, setLatestStatus] = useState(null);
+  const announcedId = useRef(null);
 
   const fetchProcesses = useCallback(async () => {
     try {
@@ -88,11 +89,16 @@ export default function OverviewPage() {
       const data = await res.json();
       setProcesses(data.processes || []);
       const latest = data.processes?.[0];
-      if (latest && latest.status !== 'complete') {
+      if (!latest) return;
+
+      if (latest.status !== 'complete') {
+        // Active process — always show current status
+        announcedId.current = null;
         setLatestStatus(latest.status);
-      } else if (latest?.status === 'complete') {
+      } else if (latest.id !== announcedId.current) {
+        // Just completed — show banner once, then clear
+        announcedId.current = latest.id;
         setLatestStatus('complete');
-        // Clear after a moment to reset diagram
         setTimeout(() => setLatestStatus(null), 3000);
       }
     } catch {}
